@@ -39,3 +39,14 @@ The tree should be able to insert, search and delete entries.
   - create the constructor that add two properties ✅
     - a property called `child` that will hold an object of pointers to the children ✅
     - a property called `isWord` that will store a boolean ✅
+
+### Insert
+
+- Inside the Root class
+  - create a method called `insert` it will take a single parameter called `word` ✅
+    - create a variable called `node` and store the property name `root` ✅
+    - use a loop to go through each letter in the word ✅
+      - check if current letter exists in the current node as a child ✅
+        - create a new child using the current letter in the word, use the class `TrieNode` ✅
+      - use the `node` variable to store the new child node ✅
+    - after loop is done, update the `isWord` property to true, to mark end of word. ✅
