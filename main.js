@@ -13,6 +13,18 @@ class TrieRoot {
     }
     node.isWord = true;
   }
+  search(prefix) {
+    let node = this.root;
+    for (let i=0; i < prefix.length; i++) {
+      if (node.child[prefix[i]]) {
+        node = node.child[prefix[i]];
+      }else{
+        return false;
+      }
+    }
+    // return if its a word sas boolean
+    return node.isWord;
+  }
 }
 
 // trie node class

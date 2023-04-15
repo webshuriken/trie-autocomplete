@@ -42,11 +42,24 @@ The tree should be able to insert, search and delete entries.
 
 ### Insert
 
-- Inside the Root class
-  - create a method called `insert` it will take a single parameter called `word` ✅
-    - create a variable called `node` and store the property name `root` ✅
-    - use a loop to go through each letter in the word ✅
-      - check if current letter exists in the current node as a child ✅
-        - create a new child using the current letter in the word, use the class `TrieNode` ✅
-      - use the `node` variable to store the new child node ✅
-    - after loop is done, update the `isWord` property to true, to mark end of word. ✅
+Inside the Root class
+- create a method called `insert` it will take a single parameter called `word` ✅
+  - create a variable called `node` and store the property name `root` ✅
+  - use a loop to go through each letter in the word ✅
+    - check if current letter exists in the current node as a child ✅
+      - create a new child using the current letter in the word, use the class `TrieNode` ✅
+    - use the `node` variable to store the new child node ✅
+  - after loop is done, update the `isWord` property to true, to mark end of word. ✅
+
+
+### Search
+
+Inside the Root Class
+- create a method called `search` passing in param `prefix` ✅
+  - store the root node in variable `node` ✅
+  - loop through the tree to a depth the size of the prefix ✅
+    - at each iteration check that the `node` exists and if it does ✅
+      - store this child node in `node` ✅
+    - if child doesnt exist, exit loop early, returning false ✅
+  - at the end of the loop return the current `node` property `isWord` as it will contain true or false ✅
+
