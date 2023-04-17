@@ -65,3 +65,26 @@ describe('Does it insert words into the tree', () => {
     expect(nodes[1].isWord).toBe(true);
   });
 });
+
+// SEARCHING
+describe('Does the seach work as it should', () => {
+  test('it searches for existing word "plane"', () => {
+    // Arrange
+    const word = 'plane';
+    trieTree.insert(word);
+    // Act
+    let result = trieTree.search(word);
+    // Assert
+    expect(result).toBe(true);
+  });
+  test('it search for a word that does not exist, returning false', () => {
+    // Arrange
+    const words = ['robot', 'planes'];
+    // Act
+    let resultA = trieTree.search(words[0]);
+    let resultB = trieTree.search(words[1]);
+    // Assert
+    expect(resultA).toBe(false);
+    expect(resultB).toBe(false);
+  });
+});
