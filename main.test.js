@@ -30,4 +30,16 @@ describe('Does it insert words into the tree', () => {
     expect(letters).toContain('a');
     expect(letters).toContain('r');
   });
+  test('insert "linux" and make sure it has a word marker on the x', () => {
+    // Arrange
+    const word = 'linux';
+    let node = trieTree.root;
+    trieTree.insert(word);
+    // Act
+    for (let i=0; i<word.length; i++) {
+      node = node.child[word[i]];
+    }
+    // Assert
+    expect(node.isWord).toBe(true);
+  });
 });
