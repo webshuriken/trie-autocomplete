@@ -42,4 +42,26 @@ describe('Does it insert words into the tree', () => {
     // Assert
     expect(node.isWord).toBe(true);
   });
+  test('insert "car" and "caroline" and make sure there are word markers on "r" and "e"', () => {
+    // Arrange
+    const words = ['car', 'caroline'];
+    let nodes = [trieTree.root, trieTree.root];
+    let randomNodes = [];
+    trieTree.insert(words[0]);
+    trieTree.insert(words[1]);
+    // Act
+    words.forEach((word, x) => {
+      for (let i=0, len=word.length; i<len; i++) {
+        nodes[x] = nodes[x].child[word[i]];
+        if (len-2 == i) {
+          randomNodes[x] = nodes[x];
+        }
+      }
+    });
+    // Assert
+    expect(randomNodes[0].isWord).toBe(false);
+    expect(randomNodes[1].isWord).toBe(false);
+    expect(nodes[0].isWord).toBe(true);
+    expect(nodes[1].isWord).toBe(true);
+  });
 });
