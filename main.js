@@ -36,3 +36,7 @@ class TrieNode {
 }
 
 const tRoot = new TrieRoot();
+
+module.exports = {
+  TrieRoot, TrieNode
+}
