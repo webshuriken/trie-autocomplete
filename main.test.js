@@ -88,3 +88,17 @@ describe('Does the seach work as it should', () => {
     expect(resultB).toBe(false);
   });
 });
+
+// DELETING
+describe('Does the class delete words successfully', () => {
+  test('it deletes the only word in the tree', () => {
+    // Arrange
+    let word = 'biblioteca';
+    trieTree.insert(word);
+    // Act
+    let result = trieTree.delete(word);
+    // Assert
+    expect(result).toBe(true);
+    expect(trieTree.child).toBeUndefined();
+  });
+});
