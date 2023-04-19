@@ -101,4 +101,30 @@ describe('Does the class delete words successfully', () => {
     expect(result).toBe(true);
     expect(trieTree.child).toBeUndefined();
   });
+  test('it deletes single word leving its siblings intact', () => {
+    // Arrange
+    let result = false, leftoverWord = false;
+    let words = ['plane', 'sugar'];
+    let node = trieTree.root;
+    let objectBeforeDelete = {
+      p: expect.any(TrieNode),
+      s: expect.any(TrieNode)
+    }
+    let objectAfterDelete = {
+      s: expect.any(TrieNode)
+    }
+    // Act
+    trieTree.insert(words[0]);
+    trieTree.insert(words[1]);
+    result = trieTree.delete(words[0]);
+    leftoverWord = trieTree.search(words[1]);
+    console.log("ROOT: ", node.child);
+    // Assert
+    expect(result).toBe(true);
+    // only 1 word left in the tree
+    expect(Object.keys(node.child).length).toBe(1);
+    // make sure the object does not match initial shape and matches new shape after deletion
+    expect(node.child).not.toMatchObject(objectBeforeDelete);
+    expect(node.child).toMatchObject(objectAfterDelete);
+  });
 });
