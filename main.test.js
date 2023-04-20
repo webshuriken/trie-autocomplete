@@ -217,7 +217,7 @@ describe('Does the class delete words using RECURSION', () => {
     trieTree.insert(word);
     let result = trieTree.deleteWithRecursion(word);
     // Assert
-    expect(result).toContain(true);
+    expect(result).toContain(true, false);
     expect(node.child).toMatchObject({});
   });
   test('it deletes the only word in the tree', () => {
@@ -227,7 +227,7 @@ describe('Does the class delete words using RECURSION', () => {
     // Act
     let result = trieTree.deleteWithRecursion(word);
     // Assert
-    expect(result).toContain(true);
+    expect(result).toContain(true, false);
     expect(trieTree.child).toBeUndefined();
   });
   test('it deletes single word leving its siblings intact', () => {
@@ -248,7 +248,7 @@ describe('Does the class delete words using RECURSION', () => {
     result = trieTree.deleteWithRecursion(words[0]);
     leftoverWord = trieTree.search(words[1]);
     // Assert
-    expect(result).toContain(true);
+    expect(result).toContain(true, false);
     // only 1 word left in the tree
     expect(Object.keys(node.child).length).toBe(1);
     // make sure the object does not match initial shape and matches new shape after deletion
@@ -278,7 +278,7 @@ describe('Does the class delete words using RECURSION', () => {
       node = node.child[words[0][i]];
     }
     // Assert
-    expect(result).toContain(false);
+    expect(result).toContain(false, false);
     expect(wordMarker).toBe(false);
     expect(nodeRoot.child).toMatchObject(objectBeforeDelete);
   });
@@ -304,7 +304,7 @@ describe('Does the class delete words using RECURSION', () => {
       node = node.child[words[1][i]];
     }
     // Assert
-    expect(result).toContain(false);
+    expect(result).toContain(false, false);
     expect(wordMarker).toBe(false);
     expect(nodeRoot.child).toMatchObject(objectBeforeDelete);
   });

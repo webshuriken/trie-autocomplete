@@ -54,21 +54,22 @@ class TrieRoot {
     };
   }
   deleteWithRecursion(prefix, node = this.root, keepGoing = true, wordSearch = true) {
+    let child = node.child[prefix[0]];
     // first check that child node exists and see if we can carry on
-    if (node.child[prefix[0]] !== undefined && keepGoing) {
+    if (child !== undefined && keepGoing) {
       // shall we recurse
       if (prefix.length > 1) {
-        [keepGoing, wordSearch] = this.deleteWithRecursion(prefix.substring(1,prefix.length), node.child[prefix[0]], true);
+        [keepGoing, wordSearch] = this.deleteWithRecursion(prefix.substring(1,prefix.length), child, true);
       }
       // as we have managed to reach end of prefix, check that it is a word
-      if (wordSearch && keepGoing && node.child[prefix[0]].isWord) {
-        node.child[prefix[0]].isWord = false;
-        wordSearch = false;
+      if (wordSearch && keepGoing && child.isWord) {
+        child.isWord = false;
       }
       // can we delete the node
-      if (!node.child[prefix[0]].isWord && keepGoing && Object.keys(node.child[prefix[0]].child).length < 1) {
+      if (!child.isWord && keepGoing && Object.keys(child.child).length < 1) {
+        // delete requires the parent object to perform delete
         delete node.child[prefix[0]];
-        return [true, wordSearch];
+        return [true, false];
       }
     }
     return [false, false];
