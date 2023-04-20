@@ -53,6 +53,26 @@ class TrieRoot {
       return false
     };
   }
+  deleteWithRecursion(prefix, node = this.root, keepGoing = true, wordSearch = true) {
+    // first check that child node exists and see if we can carry on
+    if (node.child[prefix[0]] !== undefined && keepGoing) {
+      // shall we recurse
+      if (prefix.length > 1) {
+        [keepGoing, wordSearch] = this.deleteWithRecursion(prefix.substring(1,prefix.length), node.child[prefix[0]], true);
+      }
+      // as we have managed to reach end of prefix, check that it is a word
+      if (wordSearch && keepGoing && node.child[prefix[0]].isWord) {
+        node.child[prefix[0]].isWord = false;
+        wordSearch = false;
+      }
+      // can we delete the node
+      if (!node.child[prefix[0]].isWord && keepGoing && Object.keys(node.child[prefix[0]].child).length < 1) {
+        delete node.child[prefix[0]];
+        return [true, wordSearch];
+      }
+    }
+    return [false, false];
+  }
 }
 
 // trie node class
