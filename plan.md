@@ -63,3 +63,21 @@ Inside the Root Class
     - if child doesnt exist, exit loop early, returning false ✅
   - at the end of the loop return the current `node` property `isWord` as it will contain true or false ✅
 
+
+### Delete
+
+Inside the Root Class
+- create a method called `delete` passing in param `prefix` ✅
+  - create variable `node` and store the root node in there ✅
+  - create variable `leaf` and set it to undefined. it tracks of the last leaf during our search of the tree. ✅
+  - traverse the tree with a loop, trying to reach the end of the word, at each iteration: ✅
+    - check the nodes exist, and if it doesn't, exit function early with false value ✅
+    - check for leaf with, leaf == undefined, child.length == 1, isWord == true ✅
+      - leaf will store the current node, not the child. ✅
+    - inside of `node` store the current node.child ✅
+  - if we made it this far, the current letters exists in the tree, now lets check if it is a word and if it is true: ✅
+    - check if the child is a node or a leaf by checking the left of the child properties. ✅
+      - if it has any then it is a node so just set `isWord` marker to false. ✅
+      - otherwise set the leaf child to empty object to delete any leaf below it ✅
+    - we can now return true, as the word was deleted successfully ✅
+  - if the current letter check fails then return false. ✅
