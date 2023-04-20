@@ -31,18 +31,18 @@ class TrieRoot {
     for (let i=0, len=prefix.length; i<len; i++) {
       // check if letter exists to escape early
       if (node.child[prefix[i]] == undefined) return false;
-      // for a leaf to be valid, it needs 2 things
-      // 1. isWord==false, 2. child.length==1, otherwise we reset the leaf back to {}
-      if (leaf == undefined && Object.keys(node.child[prefix[i]].child).length == 1 && !node.isWord) {
+      if (leaf == undefined && Object.keys(node.child[prefix[i]].child).length  < 2 && !node.isWord) {
         leaf = node;
-        prop = prefix[i]
+        prop = prefix[i];
+      } else if (Object.keys(node.child[prefix[i]].child).length  > 1 || node.isWord) {
+        leaf = undefined;
       }
       node = node.child[prefix[i]];
     }
     // make sure its a valid word before we continue
     if (node.isWord) {
       // check if its a leaf or node
-      if (Object.keys(node.child).length > 1) {
+      if (Object.keys(node.child).length > 0) {
         node.isWord = false;
       }else{
         // Time to delete the leaf along the way

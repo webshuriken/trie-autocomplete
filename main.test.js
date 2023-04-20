@@ -91,6 +91,17 @@ describe('Does the seach work as it should', () => {
 
 // DELETING
 describe('Does the class delete words successfully', () => {
+  test('it deletes a word even if it is 1 letter', () => {
+    // Arrange
+    let word = 'x';
+    let node = trieTree.root;
+    // Act
+    trieTree.insert(word);
+    let result = trieTree.delete(word);
+    // Assert
+    expect(result).toBe(true);
+    expect(node.child).toMatchObject({});
+  });
   test('it deletes the only word in the tree', () => {
     // Arrange
     let word = 'biblioteca';
@@ -118,7 +129,6 @@ describe('Does the class delete words successfully', () => {
     trieTree.insert(words[1]);
     result = trieTree.delete(words[0]);
     leftoverWord = trieTree.search(words[1]);
-    console.log("ROOT: ", node.child);
     // Assert
     expect(result).toBe(true);
     // only 1 word left in the tree
@@ -126,5 +136,74 @@ describe('Does the class delete words successfully', () => {
     // make sure the object does not match initial shape and matches new shape after deletion
     expect(node.child).not.toMatchObject(objectBeforeDelete);
     expect(node.child).toMatchObject(objectAfterDelete);
+  });
+  test('it deletes the first word in a branch of many', () => {
+    // Arrange
+    let words = ['car', 'carol', 'caroline'];
+    let wordMarker = true;
+    let nodeRoot = trieTree.root;
+    let node = trieTree.root;
+    let objectBeforeDelete = {
+      c: expect.any(TrieNode)
+    }
+    // Act
+    trieTree.insert(words[0]);
+    trieTree.insert(words[1]);
+    trieTree.insert(words[2]);
+
+    let result = trieTree.delete(words[0]);
+    // traverse the tree after deletion
+    for (let i=0; i<words[0].length; i++) {
+      if (i == 2) {
+        wordMarker = node.child[words[0][i]].isWord;
+      }
+      node = node.child[words[0][i]];
+    }
+    // Assert
+    expect(result).toBe(true);
+    expect(wordMarker).toBe(false);
+    expect(nodeRoot.child).toMatchObject(objectBeforeDelete);
+  });
+  test('it deletes the second word in a branch of many', () => {
+    // Arrange
+    let words = ['car', 'carol', 'caroline'];
+    let wordMarker = true;
+    let nodeRoot = trieTree.root;
+    let node = trieTree.root;
+    let objectBeforeDelete = {
+      c: expect.any(TrieNode)
+    }
+    // Act
+    trieTree.insert(words[0]);
+    trieTree.insert(words[1]);
+    trieTree.insert(words[2]);
+    let result = trieTree.delete(words[1]);
+    // traverse the tree after deletion
+    for (let i=0; i<words[1].length; i++) {
+      if (i == 4) {
+        wordMarker = node.child[words[1][i]].isWord;
+      }
+      node = node.child[words[1][i]];
+    }
+    // Assert
+    expect(result).toBe(true);
+    expect(wordMarker).toBe(false);
+    expect(nodeRoot.child).toMatchObject(objectBeforeDelete);
+  });
+  test('it deletes the last word in a branch of many', () => {
+    // Arrange
+    let words = ['car', 'carol', 'caroline'];
+    let nodeRoot = trieTree.root;
+    let objectBeforeDelete = {
+      c: expect.any(TrieNode)
+    }
+    // Act
+    trieTree.insert(words[0]);
+    trieTree.insert(words[1]);
+    trieTree.insert(words[2]);
+    let result = trieTree.delete(words[2]);
+    // Assert
+    expect(result).toBe(true);
+    expect(nodeRoot.child).toMatchObject(objectBeforeDelete);
   });
 });
