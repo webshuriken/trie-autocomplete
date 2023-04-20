@@ -17,20 +17,25 @@
     <h2>Search for UK cities.</h2>
     <div class="search-bar">
       <form class="search-form">
-        <label for="search" class="sr-only">Search Bar</label>
-        <input type="text" name="search" id="search" placeholder="search">
-        <button class="search-button">Search</button>
+        <label for="searchBar" class="sr-only">Search Bar</label>
+        <input type="text" name="search" id="searchBar" placeholder="enter text">
+        <button id="buttonAdd">Add Word</button>
       </form>
     </div>
     <div class="results">
-      <ul>
+      <ul class="">
         <li>There are currently no results.</li>
       </ul>
     </div>
   </main>
   <footer class="page-footer">
-    <p>Created by Carlos E Alford - 2022</p>
+    <p>Created by Carlos E Alford - 2022-<span id="wsFooterYear"></span></p>
   </footer>
   <script src="main.js"></script>
+  <script>
+    // dynamic footer date
+    const date = new Date();
+    document.querySelector('#wsFooterYear').innerText = date.getFullYear();
+  </script>
 </body>
 </html>
