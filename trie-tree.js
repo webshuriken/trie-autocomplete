@@ -1,5 +1,5 @@
 // Root class
-class TrieRoot {
+export class TrieRoot {
   constructor() {
     this.root = new TrieNode();
   }
@@ -106,13 +106,9 @@ class TrieRoot {
 }
 
 // trie node class
-class TrieNode {
+export class TrieNode {
   constructor() {
     this.child = {}
     this.isWord = false;
   }
-}
-
-module.exports = {
-  TrieRoot, TrieNode
 }

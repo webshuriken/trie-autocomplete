@@ -1,4 +1,4 @@
-const {TrieRoot, TrieNode} = require('./trie-tree.js');
+import {TrieRoot, TrieNode} from './trie-tree.js';
 let trieTree;
 
 
