@@ -1,4 +1,4 @@
-import { TrieRoot } from "./trie-tree";
+import { TrieRoot } from "./trie-tree.js";
 
 
 // Grab all the html elements
@@ -8,27 +8,47 @@ const suggestionsContainer = document.querySelector('#suggestionsContainer');
 // listen to the html
 searchBar.addEventListener('input', handleInput);
 
-// listen to typing in the search box
+/**
+ * @description searches the trie tree on each user keystroke inside the input box
+ * @param {object} event 
+ */
 function handleInput(event) {
-  const list = tRoot.lookUp(event.target.value);
+  let prefix = event.target.value.toLowerCase();
+  let list = [];
+  // handle an empty search string
+  if (prefix !== '') {
+    list = tRoot.lookUp(prefix);
+    console.log("RESULT: ", list)
+  }
+  // make sure the list is an array, even if its empty
+  list = list.length > 0 ? list : [];
+  // we want the list to update immediately on each key stroke
   updateSuggestionsList(list);
 }
 
+/**
+ * 
+ * @param {array} list 
+ */
 function updateSuggestionsList(list) {
+  let li, text;
   let ul = document.createElement('UL');
   ul.setAttribute('id', 'suggestionsList');
-  let li;
+  // create the list items
   for (let i=0, len=list.length; i<len; i++) {
     li = document.createElement('LI');
-    li.innerText = list[i];
-    ul.append(li);
+    text = document.createTextNode(list[i]);
+    li.appendChild(text);
+    ul.appendChild(li);
   }
-  suggestionsContainer.append(ul);
+  // handles both empty lists and not so empty ones too
+  if (list.length == 0) {
+    let p = document.createElement('P');
+    p.append('No match found');
+    suggestionsContainer.replaceChild(p, suggestionsContainer.firstElementChild);
+  }else{
+    suggestionsContainer.replaceChild(ul, suggestionsContainer.firstElementChild);
+  }
 }
 
 const tRoot = new TrieRoot();
-
-tRoot.insert('cat');
-tRoot.insert('car');
-tRoot.insert('carol');
-tRoot.insert('coconut');
