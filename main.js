@@ -74,6 +74,35 @@ class TrieRoot {
     }
     return [false, false];
   }
+  suggestions(node, word, list) {
+    // lets start adding valid words to the list
+    if (node.isWord) list.push(word);
+    // our early exit from the recursion
+    if (Object.keys(node.child).length == 0) return;
+    // this loop will allow us to branch down the tree and find all children
+    for (let letter in node.child) {
+      // lets recursie
+      this.suggestions(node.child[letter], word + letter, list);
+    }
+  }
+  lookUp(prefix) {
+    let node = this.root;
+    let list = [];
+    let word = "";
+
+    for (let i = 0; i < prefix.length; i++) {
+      // lets make sure the the prefix thus far, exists in the tree
+      if (node.child[prefix[i]] == undefined) {
+        return false;
+      }
+      // store the next bit of information and move on
+      node = node.child[prefix[i]];
+      word += prefix[i];
+    }
+    // we are passing a reference to list variable creating a closure
+    this.suggestions(node, word, list);
+    return list;
+  }
 }
 
 // trie node class
@@ -84,7 +113,27 @@ class TrieNode {
   }
 }
 
+// Grab all the html elements
+const searchBar = document.querySelector('#searchBar');
+const suggestionsList = document.querySelector('#suggestionsList');
+
+// listen to the html
+searchBar.addEventListener('input', handleInput);
+
+// listen to typing in the search box
+function handleInput(event) {
+  console.log("HANDLE INPUT: ", event.target.value);
+  const list = tRoot.lookUp(event.target.value);
+  console.log("SUGGESTIONS: ", list)
+}
+
 const tRoot = new TrieRoot();
+
+tRoot.insert('cat');
+tRoot.insert('car');
+tRoot.insert('carol');
+tRoot.insert('coconut');
+
 
 module.exports = {
   TrieRoot, TrieNode
