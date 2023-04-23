@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="To test and try out the prefix tree data structure trie.">
   <meta name="author" content="Carlos E Alford - webshuriken">
-  <link rel="stylesheet" href="main.css">
   <title>Trie Autocomplete</title>
 </head>
 <body>
@@ -16,21 +15,24 @@
   <main class="page-content">
     <h2>Search for UK cities.</h2>
     <div class="search-bar">
-      <form class="search-form">
-        <label for="search" class="sr-only">Search Bar</label>
-        <input type="text" name="search" id="search" placeholder="search">
-        <button class="search-button">Search</button>
+      <form class="search-form" onsubmit="event.preventDefault()">
+        <label for="searchBar" class="sr-only">Search Bar</label>
+        <input type="text" name="search" id="searchBar" placeholder="enter city name">
       </form>
     </div>
-    <div class="results">
-      <ul>
-        <li>There are currently no results.</li>
-      </ul>
+    <div id="suggestionsContainer">
+      <p>No match found</p>
     </div>
   </main>
   <footer class="page-footer">
-    <p>Created by Carlos E Alford - 2022</p>
+    <p>Created by Carlos E Alford - 2022-<span id="wsFooterYear"></span></p>
   </footer>
-  <script src="main.js"></script>
+  <script type="module" src="trie-tree.js"></script>
+  <script type="module" src="main.js"></script>
+  <script>
+    // dynamic footer date
+    const date = new Date();
+    document.querySelector('#wsFooterYear').innerText = date.getFullYear();
+  </script>
 </body>
 </html>

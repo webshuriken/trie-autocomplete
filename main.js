@@ -1,91 +1,59 @@
-// Root class
-class TrieRoot {
-  constructor() {
-    this.root = new TrieNode();
+import { TrieRoot } from "./trie-tree.js";
+import {UKCities} from "./assets/uk-cities.js";
+
+
+// Grab all the html elements
+const searchBar = document.querySelector('#searchBar');
+const suggestionsContainer = document.querySelector('#suggestionsContainer');
+
+// listen to the html
+searchBar.addEventListener('input', handleInput);
+
+/**
+ * @description searches the trie tree on each user keystroke inside the input box
+ * @param {object} event 
+ */
+function handleInput(event) {
+  let prefix = event.target.value.toLowerCase();
+  let list = [];
+  // handle an empty search string
+  if (prefix !== '') {
+    list = tRoot.lookUp(prefix);
   }
-  insert(word) {
-    let node = this.root;
-    for (let i=0; i < word.length; i++) {
-      if (node.child[word[i]] == undefined) {
-        node.child[word[i]] = new TrieNode();
-      }
-      node = node.child[word[i]];
-    }
-    node.isWord = true;
+  // make sure the list is an array, even if its empty
+  list = list.length > 0 ? list : [];
+  // we want the list to update immediately on each key stroke
+  updateSuggestionsList(list);
+}
+
+/**
+ * 
+ * @param {array} list 
+ */
+function updateSuggestionsList(list) {
+  let li, text;
+  let ul = document.createElement('UL');
+  ul.setAttribute('id', 'suggestionsList');
+  // create the list items
+  for (let i=0, len=list.length; i<len; i++) {
+    li = document.createElement('LI');
+    text = document.createTextNode(list[i]);
+    li.appendChild(text);
+    ul.appendChild(li);
   }
-  search(prefix) {
-    let node = this.root;
-    for (let i=0; i < prefix.length; i++) {
-      if (node.child[prefix[i]]) {
-        node = node.child[prefix[i]];
-      }else{
-        return false;
-      }
-    }
-    // return if its a word sas boolean
-    return node.isWord;
-  }
-  delete(prefix) {
-    let node = this.root;
-    let leaf = undefined, prop = undefined;
-    for (let i=0, len=prefix.length; i<len; i++) {
-      // check if letter exists to escape early
-      if (node.child[prefix[i]] == undefined) return false;
-      if (leaf == undefined && Object.keys(node.child[prefix[i]].child).length  < 2 && !node.isWord) {
-        leaf = node;
-        prop = prefix[i];
-      } else if (Object.keys(node.child[prefix[i]].child).length  > 1 || node.isWord) {
-        leaf = undefined;
-      }
-      node = node.child[prefix[i]];
-    }
-    // make sure its a valid word before we continue
-    if (node.isWord) {
-      // check if its a leaf or node
-      if (Object.keys(node.child).length > 0) {
-        node.isWord = false;
-      }else{
-        // Time to delete the leaf along the way
-        delete leaf.child[prop];
-      }
-      return true;
-    }else {
-      return false
-    };
-  }
-  deleteWithRecursion(prefix, node = this.root, keepGoing = true, wordSearch = true) {
-    let child = node.child[prefix[0]];
-    // first check that child node exists and see if we can carry on
-    if (child !== undefined && keepGoing) {
-      // shall we recurse
-      if (prefix.length > 1) {
-        [keepGoing, wordSearch] = this.deleteWithRecursion(prefix.substring(1,prefix.length), child, true);
-      }
-      // as we have managed to reach end of prefix, check that it is a word
-      if (wordSearch && keepGoing && child.isWord) {
-        child.isWord = false;
-      }
-      // can we delete the node
-      if (!child.isWord && keepGoing && Object.keys(child.child).length < 1) {
-        // delete requires the parent object to perform delete
-        delete node.child[prefix[0]];
-        return [true, false];
-      }
-    }
-    return [false, false];
+  // handles both empty lists and not so empty ones too
+  if (list.length == 0) {
+    let p = document.createElement('P');
+    p.append('No match found');
+    suggestionsContainer.replaceChild(p, suggestionsContainer.firstElementChild);
+  }else{
+    suggestionsContainer.replaceChild(ul, suggestionsContainer.firstElementChild);
   }
 }
 
-// trie node class
-class TrieNode {
-  constructor() {
-    this.child = {}
-    this.isWord = false;
-  }
-}
-
+// Create the trie tree
 const tRoot = new TrieRoot();
-
-module.exports = {
-  TrieRoot, TrieNode
-}
+tRoot.insert('cat')
+UKCities.forEach((city, i) => {
+  tRoot.insert(city.city.toLowerCase());
+});

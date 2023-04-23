@@ -1,16 +1,18 @@
 {
   "name": "trie-autocomplete",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "reload -b",
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^29.5.0"
+    "jest": "^29.5.0",
+    "reload": "^3.2.1"
   }
 }

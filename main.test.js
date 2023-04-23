@@ -1,4 +1,4 @@
-const {TrieRoot, TrieNode} = require('./main.js');
+import {TrieRoot, TrieNode} from './trie-tree.js';
 let trieTree;
 
 
@@ -323,5 +323,28 @@ describe('Does the class delete words using RECURSION', () => {
     // Assert
     expect(result).toContain(false, false);
     expect(nodeRoot.child).toMatchObject(objectBeforeDelete);
+  });
+});
+
+// SUGGESTIONS
+describe('Does it return the correct suggestions matching the prefix', () => {
+  beforeAll(() => {
+    
+  });
+  test('it returns a list of matching words', () => {
+    // Arrange
+    let prefixA = 'ca';
+    let prefixB = 'caroli';
+    let listA, listB;
+    let words = ['car', 'cat', 'carol', 'caroline', 'linux', 'lotus'];
+    // Act
+    words.forEach(word => {
+      trieTree.insert(word);
+    });
+    listA = trieTree.lookUp(prefixA);
+    listB = trieTree.lookUp(prefixB)
+    // Assert
+    expect(listA).toContain('car', 'cat', 'carol', 'caroline');
+    expect(listB).toContain('caroline');
   });
 });

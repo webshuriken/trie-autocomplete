@@ -81,3 +81,35 @@ Inside the Root Class
       - otherwise set the leaf child to empty object to delete any leaf below it ✅
     - we can now return true, as the word was deleted successfully ✅
   - if the current letter check fails then return false. ✅
+
+
+## Look Up
+
+Inside the Root Class
+- create a method called `lookUp` passing in param `prefix` ✅
+  - store the `root` in a variable called `node` ✅
+  - create an array `list` to store the words suggestion we find. These word suggestions will have the prefix entered by the user. ✅
+  - create a variable `word` to build up the word as we find it. so if we are given partial letter that exist, we can check them and build up the word so far. ✅
+  - loop through the tree, similar to what we did in the search method, with some changes to the proces.. ✅
+    - if we run into a letter that is not part of the tree, we return false ✅
+    - otherwise store the current child into the `node` variable ✅
+    - add a the current letter to the `word` variable ✅
+  - here we will call another method called `suggestions` that will create a list of suggestions by using some information we gathered in so far. we will pass it the `node`, `word` and `list` variables. ✅
+  - finally retun the list found. ✅
+
+
+## Suggestions
+
+Inside the Root Class
+- create a method called `suggestions` passing in 3 parameters, this function will use recursion to get a list of word suggestions. ✅
+  1. the `node` as the starting point
+  2. the `word` or prefix given by the user
+  3. the `list` array. This is important because it will create a closure. It will hold our list of words found that will be used by the function calling this one.
+  - first thing is to check if the `word` passed in is actually a valid word ✅
+    - if it is then we add it to the `list` array, otherwise do nothing ✅
+  - check for an absence of child in the current node, and if there are none, return to exist current function call. ✅
+  - At this point in the search we need to be able to branch off and carry on the look up down the tree. Here is where the `for in` loop will come in handy. Use it to loop through the children of the current node. This will carry on until there are no more children. ✅
+    - for each child, call this method `suggestions` creating a recursion. Pass in the arguments as stated at the beginnign of the plan for this method. There is one little thing here.. we can not change the `word` variable to have the new `letter` and then pass it to the function call, we need to do this dynamically  within the brackets of the function call or it will mess up the starting point for other searches. ✅
+
+If the setup word correctly, we should be able to have a list of suggestions we can display to the user.
+  
