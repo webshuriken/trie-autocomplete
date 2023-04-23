@@ -6,27 +6,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="To test and try out the prefix tree data structure trie.">
   <meta name="author" content="Carlos E Alford - webshuriken">
+  <link rel="stylesheet" href="styles/main.css">
   <title>Trie Autocomplete</title>
 </head>
+  <!--
+         _____________             ____________________________________________________
+      /\\             /                                                              \\|
+     /  \\           /                                                                \|
+    /    \\         /                                                                  |
+   /      \\______ / __          __  _        _____ _                _ _                     
+  /       //      /  \ \        / / | |      / ____| |              (_) |             
+ /       //      /    \ \  /\  / /__| |__   | (___ | |__  _   _ _ __ _| | _____ _ __  
+/       / ------       \ \/  \/ / _ \ '_ \   \___ \| '_ \| | | | '__| | |/ / _ \ '_ \ 
+\       \ ------        \  /\  /  __/ |_) |  ____) | | | | |_| | |  | |   <  __/ | | |
+ \       \\      \       \/  \/ \___|_.__/  |_____/|_| |_|\__,_|_|  |_|_|\_\___|_| |_|
+  \       \\______\                2023
+   \      //       \                    
+    \    //         \                  
+     \  //           \             https://carlosealford.com/                         /|
+      \//_____________\            __________________________________________________//|
+  -->
 <body>
-  <header class="page-header">
-    <h1>Trie Autocomplete</h1>
-  </header>
-  <main class="page-content">
-    <h2>Search for UK cities.</h2>
-    <div class="search-bar">
-      <form class="search-form" onsubmit="event.preventDefault()">
-        <label for="searchBar" class="sr-only">Search Bar</label>
-        <input type="text" name="search" id="searchBar" placeholder="enter city name">
-      </form>
-    </div>
-    <div id="suggestionsContainer">
-      <p>No match found</p>
-    </div>
-  </main>
-  <footer class="page-footer">
-    <p>Created by Carlos E Alford - 2022-<span id="wsFooterYear"></span></p>
-  </footer>
+  <div class="app">
+    <header class="page-header">
+      <h1>Trie Autocomplete</h1>
+    </header>
+    <main class="page-content">
+      <div class="page-content__wrapper">
+        <h2>Search for UK cities.</h2>
+        <div class="search-bar">
+          <form class="search-form" onsubmit="event.preventDefault()">
+            <label for="searchBar" class="sr-only">Search Bar</label>
+            <input type="text" name="search" id="searchBar" placeholder="enter city name">
+          </form>
+        </div>
+        <div id="suggestionsContainer">
+          <p>No match found</p>
+        </div>
+      </div>
+    </main>
+    <footer class="page-footer">
+      <p>Created by Carlos E Alford - 2022-<span id="wsFooterYear"></span></p>
+    </footer>
+  </div>
   <script type="module" src="trie-tree.js"></script>
   <script type="module" src="main.js"></script>
   <script>
