@@ -1,4 +1,5 @@
 import { TrieRoot } from "./trie-tree.js";
+import {UKCities} from "./assets/uk-cities.js";
 
 
 // Grab all the html elements
@@ -18,7 +19,6 @@ function handleInput(event) {
   // handle an empty search string
   if (prefix !== '') {
     list = tRoot.lookUp(prefix);
-    console.log("RESULT: ", list)
   }
   // make sure the list is an array, even if its empty
   list = list.length > 0 ? list : [];
@@ -51,4 +51,9 @@ function updateSuggestionsList(list) {
   }
 }
 
+// Create the trie tree
 const tRoot = new TrieRoot();
+tRoot.insert('cat')
+UKCities.forEach((city, i) => {
+  tRoot.insert(city.city.toLowerCase());
+});
