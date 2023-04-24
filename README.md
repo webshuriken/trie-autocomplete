@@ -71,10 +71,10 @@ To start developing which run a local server that reloads the browser when a fil
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #0a192f |
-| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
-| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
-| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
+| Blue | ![#09095F](https://via.placeholder.com/10/09095F?text=+) #09095F |
+| Red | ![#CC0000](https://via.placeholder.com/10/CC0000?text=+) #CC0000 |
+| Rose | ![#f2c9c9](https://via.placeholder.com/10/f2c9c9?text=+) #f2c9c9 |
+| White | ![#fefefe](https://via.placeholder.com/10/fefefe?text=+) #fefefe |
 
 
 ## Tech Stack
