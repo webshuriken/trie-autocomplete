@@ -1,55 +1,54 @@
-# Trie Autocomplete
+# Trie Autocomplete :wrench:
 
 Auto complete input box which uses the Trie Tree Data Structure a.k.a. prefix tree.
 
-
-## Features
-
-- Auto completion box
-
-
-## Demo
+## About
 
 The demo loads over 2,000 UK cities for you to search through. Currently it just displays the city name.
 
-[Live demo](https://webshuriken.github.io/trie-autocomplete/)
-
-
-## Screenshots
+:wrench: [Live demo](https://webshuriken.github.io/trie-autocomplete/)
 
 ![App large Screenshot](assets/screenshot-1.png)
 
-![App mobile Screenshot](assets/screenshot-2.png)
+## Tech Stack
 
+**Client:**
+
+- HTML
+- CSS
+- JavaScript
+
+**Backend:**
+
+- http-server
 
 ## Run Locally
 
-Clone the project
+1. Clone the project
 
 ```bash
   git clone https://github.com/webshuriken/trie-autocomplete
 ```
 
-Go to the project directory
+2. Go to the project directory
 
 ```bash
   cd my-project
 ```
 
-Install dependencies
+3. Install dependencies
 
 ```bash
   npm install
 ```
 
-Start the server
+4. Start the server
 
 ```bash
   npm run start
 ```
 
-
-## Running Tests
+### Running Tests
 
 To run tests, run the following command
 
@@ -57,8 +56,7 @@ To run tests, run the following command
   npm test
 ```
 
-
-## Run Developer mode
+### Run Developer mode
 
 To start developing which run a local server that reloads the browser when a file changes and also runs sass in the background so it automatically recompiles CSS on file save.
 
@@ -66,41 +64,16 @@ To start developing which run a local server that reloads the browser when a fil
   npm run dev
 ```
 
+## Features
 
-## Color Reference
-
-| Color             | Hex                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| Blue | ![#09095F](https://via.placeholder.com/10/09095F?text=+) #09095F |
-| Red | ![#CC0000](https://via.placeholder.com/10/CC0000?text=+) #CC0000 |
-| Rose | ![#f2c9c9](https://via.placeholder.com/10/f2c9c9?text=+) #f2c9c9 |
-| White | ![#fefefe](https://via.placeholder.com/10/fefefe?text=+) #fefefe |
-
-
-## Tech Stack
-
-**Client:** HTML, CSS, JavaScript
-
-**Backend:** http-server
-
+- Auto completion box using trie
 
 ## Road Map
 
-- Improve the suggestions
-  
-  1. Give the user a choice of the max number of results to display
-  2. A way to keep track of the popular words and display them instead
-  3. Improve storage of word 
-
-
-## Key Takeaways
-
-Learning about trie tree (a.k.a. prefix tree) was really interesting. When first reading about how it works and its purpose, the whole approach made sense. Then it came time to implement it and this is when you realise that you may not know as much as you thought. I took to the whiteboard to visualise how it is store and from there work out how to actually store new item and then how to retrieve them.
-
-When I was implementing the search method for the tree a bug creeped up towards the end and during the search for said bug I realised that the search function could be improved if I used recursion. Good news, it worked and I actually implemented it faster than the first time around, which means I understand trie trees better.
-
-For the auto-complete part of the program, I had to go back to the white board because it helps me to better visualise what is going on with the code. During the thinking stage I realised that using a similar approach to the search method could be a good call. I tried it and with the beauty of closure the auto-complete method was complete.
-
+- [ ] Improve the suggestions
+  - [ ] Give the user a choice of the max number of results to display
+  - [ ] A way to keep track of the popular words and display them instead
+  - [ ] Improve storage of word 
 
 ## Acknowledgements
 
@@ -109,16 +82,10 @@ For the auto-complete part of the program, I had to go back to the white board b
  - [SASS documentation](https://sass-lang.com/). Fantastic idea.
  - [Sarah Cope @ CSS Tricks](https://css-tricks.com/almanac/properties/s/scrollbar/). Article on scrollbar styling.
 
-
 ## Authors
 
 - [Carlos E Alford](https://carlosealford.com/)
 
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-
-![Logo](assets/ceam-logo-3d.png)
-
